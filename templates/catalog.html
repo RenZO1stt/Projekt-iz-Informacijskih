@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Catalog{% endblock %}
+{% block content %}
+<h2>Filter Options</h2>
+<form method="POST">
+    <label for="vrsta">Vrsta:</label>
+    <select id="vrsta" name="vrsta">
+        <option value="">Any</option>
+        <option value="rebe">Rebe</option>
+        <option value="jaketa">Jaketa</option>
+        <option value="majca">Majca</option>
+    </select><br>
+
+    <label for="materijal">Materijal:</label>
+    <select id="materijal" name="materijal">
+        <option value="">Any</option>
+        <option value="pamuk">Pamuk</option>
+    </select><br>
+
+    <label for="velicina">Veličina:</label>
+    <select id="velicina" name="velicina">
+        <option value="">Any</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+    </select><br>
+
+    <label for="boja">Boja:</label>
+    <select id="boja" name="boja">
+        <option value="">Any</option>
+        <option value="plava">Plava</option>
+        <option value="crna">Crna</option>
+    </select><br>
+
+    <button type="submit">Filter</button>
+</form>
+
+<h2>Available Items</h2>
+<a href="{{ url_for('add_item') }}">Add New Item</a>
+<ul>
+    {% for item in items %}
+        <li>
+            {{ item.vrsta }} - {{ item.materijal }} - {{ item.velicina }} - {{ item.boja }}
+            <a href="{{ url_for('edit_item', item_id=item.id) }}">Edit</a>
+            <form method="POST" action="{{ url_for('delete_item', item_id=item.id) }}" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

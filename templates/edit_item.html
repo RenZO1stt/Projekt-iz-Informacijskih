@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Edit Item{% endblock %}
+{% block content %}
+<h2>Edit Item</h2>
+<form method="POST">
+    <label for="vrsta">Vrsta:</label>
+    <input type="text" id="vrsta" name="vrsta" value="{{ item.vrsta }}" required><br>
+    
+    <label for="materijal">Materijal:</label>
+    <input type="text" id="materijal" name="materijal" value="{{ item.materijal }}" required><br>
+
+    <label for="velicina">Veličina:</label>
+    <input type="text" id="velicina" name="velicina" value="{{ item.velicina }}" required><br>
+
+    <label for="boja">Boja:</label>
+    <input type="text" id="boja" name="boja" value="{{ item.boja }}" required><br>
+
+    <button type="submit">Update Item</button>
+</form>
+<a href="{{ url_for('catalog') }}">Back to Catalog</a>
+{% endblock %}
